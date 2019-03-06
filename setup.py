@@ -1,21 +1,21 @@
 from distutils.core import setup
 
 setup(
-    name = "django-kong",
-    version = "0.9",
+    name = "dyrods",
+    version = "0.1",
     packages = [
-        "kong",
-        "kong.management",
-        "kong.management.commands",
-        "kong.templatetags",
-        "kong.tests",
+        "dyrods",
+        "dyrods.management",
+        "dyrods.management.commands",
+        "dyrods.templatetags",
+        "dyrods.tests",
     ],
-    author = "Eric Holscher",
-    author_email = "eric@ericholscher.com",
-    description = "A server description and deployment testing tool for King Kong sized sites",
-    url = "http://github.com/ericholscher/django-kong/tree/master",
+    author = "Kyongjin Jo",
+    author_email = "kyongjin.jo@sk.com",
+    description = "dyrods web documents",
+    url = "https://github.com/harudium/dyrods/master",
     package_data = {
-        'kong': [
+        'https://github.com/harudium/dyrods': [
             'templates/*.html',
             'templates/kong/*.html',
             'templates/kong/*.txt',
