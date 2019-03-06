@@ -16,8 +16,8 @@ Contents
    :maxdepth: 2
    :glob:
 
-   Authentication
-   
-   
+   authentication
+   architecture
+
    
    
