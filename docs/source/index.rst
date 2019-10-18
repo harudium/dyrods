@@ -19,9 +19,8 @@ Contents
 
    architecture
    functions
-   authentication
-
-   event
+   skt
+   tpeg
    weather
      
    

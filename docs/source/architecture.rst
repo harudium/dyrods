@@ -11,5 +11,18 @@ Miroserivce Architecture
 -------------
 
 
+Architecture Internals
+-------------
+
 Data Source Interworking
+'''''''''''''
+OpenLR Encoder/Decoder
+'''''''''''''
+Data Manager
+'''''''''''''
+Batch Modules
+'''''''''''''
+Session Manager
+'''''''''''''
+API Gateway
 '''''''''''''
