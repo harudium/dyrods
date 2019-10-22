@@ -27,6 +27,9 @@ Map Agnostic Location Referencing
 교통 정보 서비스를 제공 하기 위해서는 도로의 어느 영역 데이터 인지를 확인할 수 있어야 합니다.
 openLR
 ''''''''''''''''''''''''''
+openLR_은 TOMTOM 에서 개발한 위치 참조 형식 중 하나입니다.
+.. _openLR: http://www.openlr.org/
+
 AGORA-C
 ''''''''''''''''''''''''''
 
