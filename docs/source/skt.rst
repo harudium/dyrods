@@ -29,14 +29,18 @@ API 호출을 통해 계정을 생성 합니다.
 
 - Body
 
+.. rst-class:: table-width-fix
 .. rst-class:: table-width-full
 .. rst-class:: text-align-justify
 
 +----------+--------+-------------------------+
-| body row 1 | column 2   | column 3   | 
-+------------+------------+-----------+ 
-| body row 1 | column 2   | column 3  | 
-+------------+------------+-----------+ 
+| Key      | Type   | Description             |
++==========+========+=========================+
+| username | string | 로그인할 아이디(이메일) |
++----------+--------+-------------------------+
+| password | string | 패스워드                |
++----------+--------+-------------------------+
+
 
 .. role:: underline
         :class: underline
