@@ -28,7 +28,9 @@ Map Agnostic Location Referencing
 
 openLR
 ''''''''''''''''''''''''''
-openLR_은 TOMTOM 에서 개발한 위치 참조 형식 입니다.
+openLR_은 TOMTOM 에서 개발한 위치 참조 형식 입니다. 
+.. _openLR: https://github.com/tomtom-international/openlr/
+
 
 AGORA-C
 ''''''''''''''''''''''''''
