@@ -14,12 +14,11 @@ Parameters
 .. rst-class:: table-width-fix
 
 +------------------------+------------+----------+----------+
-| Header row, column 1   | Header 2   | Header 3 | Header 4 |
-| (header rows optional) |            |          |          |
+| Parameters   | Type   | Values | Description |
 +========================+============+==========+==========+
-| body row 1, column 1   | column 2   | column 3 | column 4 |
+| filter_type | String   | box | 박스 형태 Geo 필터 적용|
 +------------------------+------------+----------+----------+
-| body row 2             | ...        | ...      |          |
+|            |        | circle      |     원 형태 Geo 필터 적용     |
 +------------------------+------------+----------+----------+
 
 
