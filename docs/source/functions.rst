@@ -8,7 +8,7 @@ RUUT 는 SKT T Map 과 연동하여 1800만 운전자의 실시간 운전정보 
 
 RUUT
 ''''''''''''''''''''''''''
-RUUT 실시간 교통 정보는 JSON 포맷 형태로 제공 됩니다. 상세 포맷은 :ref:`RUUT포맷 <messageformats>` 을 참조 하세요. 사용자는 표준화된 RESTful API 호출을 통하여 RUUT 실시간 교통 정보를 획득할 수 있습니다. 
+RUUT 실시간 교통 정보는 JSON 포맷 형태로 제공 됩니다. 상세 포맷은 :ref:`RUUT포맷 <message_formats>` 을 참조 하세요. 사용자는 표준화된 RESTful API 호출을 통하여 RUUT 실시간 교통 정보를 획득할 수 있습니다. 
 
 TPEG2
 ''''''''''''''''''''''''''
