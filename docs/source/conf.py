@@ -165,7 +165,7 @@ html_static_path = ['_static']
 #html_file_suffix = ''
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'DjangoKongdoc'
+# tmlhelp_basename = 'DjangoKongdoc'
 
 
 # -- Options for LaTeX output --------------------------------------------------
