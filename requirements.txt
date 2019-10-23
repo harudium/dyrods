@@ -1,3 +1,0 @@
-twill
-django
-sphinx_rtd_theme
