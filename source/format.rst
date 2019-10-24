@@ -21,16 +21,25 @@ Geo Filter
 | **GET** | `/endpoint?filter-type={value}`     |
 +---------+-------------------------------------+
 
+.. csv-table:: Geo Filtering 종류
+   :header: "필터명", "필수 파라미터", "상세설명"
+   :widths: 15, 20, 40
+
+   "box", "corner1, corner2", "2개 대각 GPS좌표(corner1,2)로 구성된 박스 내 데이터만 필터"
+   "circle", "center, radius", "GPS좌표(center) 중심으로 반지름(radius) 로 구성된 원 내 데이터만 필터"
+   "polygon", "points", "3개 이상의 GPS좌표로 구성된 도형 내 데이터만 필터"
+   "pos", "point", "GPS좌표(point)에서 가장 가까운 1개 데이터만 필터"
+   "centerpoint-box", "center, width, height", "GPS좌표(center)가 무게중심이며 width/height 의 가로 세로 길이를 가진 박스 내 데이터만 필터"
+   
 지도 상의 영역을 지정하고 해당 영역 내에 포함되는 데이터만 추출하는 데 사용합니다. Geo Filter 는 RUUT의 모든 요청 구문의 필수 경로 파라미터 입니다. 모든 키-밸류 쌍의 데이터 형은 String 입니다.
 
-.. csv-table:: Frozen Delights!
-   :header: "Treat", "Quantity", "Description"
+.. csv-table:: Geo Filtering Parameter
+   :header: "Parameter", "Type", "Description"
    :widths: 15, 10, 30
 
-   , 2.99, "On a stick!"
-   , 1.49, "If we took the bones out, it wouldn't be
-   crunchy, now would it?"
-   "Gannet Ripple", 1.99, "On a stick!"
+   "filter-type", "String", "box, circle, polygon, pos, center"
+   "corner"
+   
 
 +--------------+-----------------+------------------------------------------------------+
 | Parameter    | Value           |                   Desription                       	|
