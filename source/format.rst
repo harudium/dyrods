@@ -23,6 +23,15 @@ Geo Filter
 
 지도 상의 영역을 지정하고 해당 영역 내에 포함되는 데이터만 추출하는 데 사용합니다. Geo Filter 는 RUUT의 모든 요청 구문의 필수 경로 파라미터 입니다. 모든 키-밸류 쌍의 데이터 형은 String 입니다.
 
+.. csv-table:: Frozen Delights!
+   :header: "Treat", "Quantity", "Description"
+   :widths: 15, 10, 30
+
+   "Albatross", 2.99, "On a stick!"
+   "Crunchy Frog", 1.49, "If we took the bones out, it wouldn't be
+   crunchy, now would it?"
+   "Gannet Ripple", 1.99, "On a stick!"
+
 +--------------+-----------------+------------------------------------------------------+
 | Parameter    | Value           |                   Desription                       	|
 +==============+=================+======================================================+
