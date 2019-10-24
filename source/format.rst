@@ -21,8 +21,7 @@ Geo Filter
    :header: "필터명", "필수 파라미터", "상세설명"
    :widths: 15, 20, 40
 
-   "bo
-   x", "corner1, corner2", "대각 GPS좌표(corner1,2)로 구성된 박스 내 데이터"
+   "box\n ddd", "corner1, corner2", "대각 GPS좌표(corner1,2)로 구성된 박스 내 데이터"
    "circle", "center, radius", "GPS좌표(center) 중심, 반지름(radius) 로 구성된 원 내 데이터"
    "polygon", "points", "3개 이상의 GPS좌표로 구성된 도형 내 데이터"
    "pos", "point", "GPS좌표(point)에서 가장 가까운 1개 데이터"
