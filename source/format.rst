@@ -53,8 +53,8 @@ Parameters
 +----------+----------+----------+
 | Header 1 | Header 2 | Header 3 |
 +==========+==========+==========+
-| | Item 1 |        dsfasfdsafsafasf  |      adfasdfasfdasfsadf    |
-| | Item 2 |          |       asdfasdfasdfasdfsaf   |
+| Item 1 |        dsfasfdsafsafasf  |      adfasdfasfdasfsadf    |
+| Item 2 |          |       asdfasdfasdfasdfsaf   |
 +----------+----------+----------+
 
 
