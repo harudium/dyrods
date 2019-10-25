@@ -1,7 +1,7 @@
 메시지 포맷
 =======================================
 
-
+.. rst-class:: table-width-fix
 
 .. _message_formats:
 
@@ -48,8 +48,7 @@ Geo Filtering 파라미터 리스트
 +-------------+---------+-----------------+--------------------------------------------------------+
 | width       | Integer | box width       | width (km) of the `centerpoint-box` filter             |
 +-------------+---------+-----------------+--------------------------------------------------------+
-| points      | String  | gps             | A pipe-delimeted list of gps coordinates of            |
-+             +         +                 +                                                        +
+| points      | String  | gps             | A pipe-delimeted list of gps coordinates of\           |
 |             |         |                 | `polygon` filter. Max 8 coordinates are allowed        |
 +-------------+---------+-----------------+--------------------------------------------------------+
 | point       | String  | gps             | gps point to get the closest one by the `pos` filter   |
@@ -70,7 +69,7 @@ Geo Filtering 예제
 +-----------------+---------+----------------------------------------------------------------------+
 | pos             | **GET** | `/endpoint?filter-type=pos&point={gps}`                              |
 +-----------------+---------+----------------------------------------------------------------------+
-| centerpoint-box | **GET** | `/endpoint?filter-type=centerpoint-box&center={gps}&height={km}`     |
+| centerpoint-box | **GET** | `/endpoint?filter-type=centerpoint-box&center={gps}&height={km}`\    |
 |                 |         | `&length={km}`                                                       | 
 +-----------------+---------+----------------------------------------------------------------------+
 
