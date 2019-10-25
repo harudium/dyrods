@@ -1,7 +1,7 @@
 메시지 포맷
 =======================================
 
-.. rst-class:: table-width-fix
+
 
 .. _message_formats:
 
@@ -71,7 +71,6 @@ Geo Filtering 예제
 | pos             | **GET** | `/endpoint?filter-type=pos&point={gps}`                              |
 +-----------------+---------+----------------------------------------------------------------------+
 | centerpoint-box | **GET** | `/endpoint?filter-type=centerpoint-box&center={gps}&height={km}`     |
-|                 |         |                                                                      |
 |                 |         | `&length={km}`                                                       | 
 +-----------------+---------+----------------------------------------------------------------------+
 
