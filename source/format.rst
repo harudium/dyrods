@@ -21,7 +21,7 @@ Geo Filtering 파라미터 리스트
 
 5개의 필터는 `filter-type` 파라미터의 값 영역에 명시하여 활성화 할 수 있습니다. 각각의 필터는 동시 사용이 불가합니다. 또한, 해당 필터와 병용 되어야 하는 파라미터가 추가로 명시되지 않을 경우 필터가 정상 동작하지 않습니다.
 
-.. note:: 예) `/endpoint?filter-type=box&corner1={gps}&corner2={gps}` <box 필터는 corner1/2 가 반드시 필요>
+.. note:: 예) `/endpoint?filter-type=box&corner1={gps}&corner2={gps}` *`box` should be combined with `corner1` and `corner2`
 
 +-------------+---------+-----------------+--------------------------------------------------------+
 | Params      | Type    | Value           | Description                                            |
@@ -48,16 +48,30 @@ Geo Filtering 파라미터 리스트
 +-------------+---------+-----------------+--------------------------------------------------------+
 | width       | Integer | box width       | width (km) of the `centerpoint-box` filter             |
 +-------------+---------+-----------------+--------------------------------------------------------+
-| points      | String  | gps             | gps points of the `polygon` filter                     |
+| points      | String  | gps             | A pipe-delimeted list of gps coordinates of `polygon`  |
+|             |         |                 | filter. Max 8 coordinates are allowed                  |
 +-------------+---------+-----------------+--------------------------------------------------------+
 | point       | String  | gps             | gps point to get the closest one by the `pos` filter   |
 +-------------+---------+-----------------+--------------------------------------------------------+
 | regionid    | Integer | region ID       | region ID to filter by administrative area             |
 +-------------+---------+-----------------+--------------------------------------------------------+
 
-+---------+-------------------------------------+
-| **GET** | `/endpoint?filter-type={value}`     |
-+---------+-------------------------------------+
+Geo Filtering 예제 
+''''''''''''''''''''''''''
++-----------------+---------+----------------------------------------------------------------------+
+| Filter          | Method  | URL Sample                                                           |
++=================+================================================================================+
+| box             | **GET** | `/endpoint?filter-type=box&corner1={gps}&corner2={gps}`              |
++-----------------+---------+----------------------------------------------------------------------+
+| circle          | **GET** | `/endpoint?filter-type=circle&center={gps}&radius={km}`              |
++-----------------+---------+----------------------------------------------------------------------+
+| polygon         | **GET** | `/endpoint?filter-type=polygon&points={gps}|{gps}|{gps}|...`         |
++-----------------+---------+----------------------------------------------------------------------+
+| pos             | **GET** | `/endpoint?filter-type=pos&point={gps}`                              |
++-----------------+---------+----------------------------------------------------------------------+
+| centerpoint-box | **GET** | `/endpoint?filter-type=centerpoint-box&center={gps}&height={km}`     |
+|                 |         |  &length={km}`                                                       | 
++-----------------+---------+----------------------------------------------------------------------+
 
 
 
