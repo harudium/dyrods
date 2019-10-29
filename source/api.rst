@@ -83,12 +83,54 @@ Segment
 
 Request URL
 
-Parameters
-+-------------+--------+-----------------+--------------------------------------------------------+
-| Params      | Type   | Value           | Description                                            |
-+=============+========+=================+========================================================+
-| filter-type | String | box             | box shaped filter with 2 gps coordinates               |
-+-------------+--------+-----------------+--------------------------------------------------------+
+Request Parameters
+.............
+
++-------------+---------+-----------------+--------------------------------------------------------+
+| Params      | Type    | Value           | Description                                            |
++=============+=========+=================+========================================================+
+| rttiField   | String  | speed           | Current measured speed field only                      |
++             +         +-----------------+--------------------------------------------------------+
+|             |         | limit           | Speed limit field only                                 |
++             +         +-----------------+--------------------------------------------------------+
+|             |         | travleTime      | Travel time (pass through the segment) field only      |
++             +         +-----------------+--------------------------------------------------------+
+|             |         | freeFlow        | Reference free flow field only                         |
++             +         +-----------------+--------------------------------------------------------+
+|             |         | all (default)   | Return all rtti fields                                 |
++-------------+---------+-----------------+--------------------------------------------------------+
+| frc         | Integer | {FRC level}     | FRC matched fields only (comma delimited list of frc)  |
++             +         +-----------------+--------------------------------------------------------+
+|             |         | all (default)   | Return all fields regardless of FRC level              |
++-------------+---------+-----------------+--------------------------------------------------------+
+| start-time  | Datetime| time            | Return data from this time. Three types of responses   |
+|             |         |                 | *Future : predicted data with `duration`, `interval`   |
+|             |         |                 | *Past : historical data with `duration`, `interval`    |
+|             |         |                 | *default : presnet                                     |
++-------------+---------+-----------------+--------------------------------------------------------+
+| duration    | Integer | 5 to 60         | The duration to return data with the `interval`        |
+|             |         | (multiple of 5) | The start-time plus the duration cannot excced 1 hr    |
+|             |         |                 | from the current time (default: 0)                     |
++-------------+---------+-----------------+--------------------------------------------------------+
+| interval    | Integer | minutes         | The period to report data as a multiple of 5 (<60)     |
++-------------+---------+-----------------+--------------------------------------------------------+
+| lane        | String  | on (default)    | Enable lane level traffic (if possible)                |
++             +         +-----------------+--------------------------------------------------------+
+|             |         | off             | Disable                                                |
++-------------+---------+-----------------+--------------------------------------------------------+
+| lr          | Integer | openlr          | openLR codes only                                      |
++             +         +-----------------+--------------------------------------------------------+
+|             |         | agorac          | AGORA-C codes only                                     |
++             +         +-----------------+--------------------------------------------------------+
+|             |         | all (default)   | Return all lr fields.                                  |
++-------------+---------+-----------------+--------------------------------------------------------+
+| coordinates | String  | on (default)    | Enable GPS pair of start/end node of the segment       |
++             +         +-----------------+--------------------------------------------------------+
+|             |         | off             | Disable                                                |
++-------------+---------+-----------------+--------------------------------------------------------+
+
+Response Parameters
+.............
 
 **Response**
 
