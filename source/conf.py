@@ -132,10 +132,10 @@ latex_elements = {
     # 'figure_align': 'htbp',
     # Additional stuff for the LaTeX preamble.
     'preamble': "".join((
-        '\DeclareUnicodeCharacter{00A0}{ }',  # NO-BREAK SPACE
-        '\DeclareUnicodeCharacter{251C}{+}',  # BOX DRAWINGS LIGHT VERTICAL AND RIGHT
-        '\DeclareUnicodeCharacter{2514}{+}',  # BOX DRAWINGS LIGHT UP AND RIGHT
-    )),
+        '\usepackage[utf8x]{inputenc}',
+        '\documentclass{article}',
+        '\usepackage{kotex}',
+    ))
 }
 
 # Grouping the document tree into LaTeX files. List of tuples
