@@ -86,7 +86,7 @@ Segment
 +------------+-------------------------------------------------------------------------------------+
 
 Request Parameters
-.............
+..........................
 
 +-------------+---------+-----------------+--------------------------------------------------------+
 | Params      | Type    | Value           | Description                                            |
@@ -132,7 +132,7 @@ Request Parameters
 +-------------+---------+-----------------+--------------------------------------------------------+
 
 Response Parameters
-.............
+..........................
 
 .. note:: 응답은 하나 이상의 segment 로 구성 되며 JSON array 형태로 구성 됩니다.
 
@@ -165,6 +165,32 @@ Response Parameters
 +-----------------------+---------+------------------------------------------------------------+
 | timestamp             | Datetime| Timestamp when the traffic infromation was created         |
 +-----------------------+---------+------------------------------------------------------------+
+
+Request/Response Example
+..........................
+.. topic:: request example
+
+    {host-ip}/ruut/v1/segments?filter_type=circle&center=37.397619,%20127.112465&radius=10&frc=1&rttiField=all&regionId=0&lr=all&lane=on
+
+.. topic:: response example
+    "segments": [
+        {
+            "segmentId": "1020174101",
+            "roadCate": 1,
+            "speed": "84",
+            "limit": "80",
+            "freeFlow": "80",
+            "travelTime": "58",
+            "openLR": "C1pdVxqjGwktFgCN+34JEQ==",
+            "agoraC": "",
+            "lane": [
+                {
+                    "laneNumber": "",
+                    "laneSpeed": ""
+                }
+            ],
+            "timeStamp": "2019-10-23 15:04:00"
+        },
 
 **Response**
 
