@@ -173,6 +173,7 @@ Request/Response Example
     {host-ip}/ruut/v1/segments?filter_type=circle&center=37.397619,%20127.112465&radius=10&frc=1&rttiField=all&regionId=0&lr=all&lane=on
 
 .. topic:: response example
+
     "segments": [
         {
             "segmentId": "1020174101",
