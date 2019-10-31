@@ -1,0 +1,289 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>메시지 포맷 &mdash; Smart[Fleet] Platform 1.1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="API 규격" href="api.html" />
+    <link rel="prev" title="RUUT TPEG 서비스 가이드" href="tpeg.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Smart[Fleet] Platform
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">주요 기능</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skt.html">RUUT 서비스 가이드</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tpeg.html">RUUT TPEG 서비스 가이드</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">메시지 포맷</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#segment">Segment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#incident">Incident</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tpeg">TPEG</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API 규격</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Smart[Fleet] Platform</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>메시지 포맷</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/format.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>메시지 포맷<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p class="table-width-fix" id="message-formats">RUUT의 메세지는 크게 3가지로 구분됩니다.
+* Segment : Segment 기반의 실시간 교통 정보 메시지
+* Incident : Segment 기반의 이벤트 (사고/공사 등) 정보 메시지
+* TPEG : TPEG2 TFP/TEC/WEA 어플리케이션 Binary 또는 TPEG-ML 메시지</p>
+<div class="section" id="segment">
+<span id="segment-formats"></span><h2>Segment<a class="headerlink" href="#segment" title="Permalink to this headline">¶</a></h2>
+<p>RUUT 는 지도 형태 독립적으로 도로를 관리합니다. 이에 교통 정보를 더 효율적으로 관리할 수 있도록 별도의 도로 링크 형태를 활용하며 이를 시스템 내에서 Segment라 부릅니다.하나의 Segment는 시작 노드(Start Node)와 종료 노드(End Node)를 가진 선형 링크(Linear Link)이며, RUUT 의 모든 기본 정보 제공 단위는 Segment이며 해당 Segment를 활용한 맵 매칭을 위해서 openLR, AGORA-C 와 같은 Dynamic Location Referencing 기법에 따른 위치 참조 코드를 제공하고 있습니다. Dynamic Location Referencing 기법을 활용하기 어려운 light 사용자를 위하여 Segment의 시작/끝 지점에 대한 GPS 좌표를 동시에 제공하고 있습니다.</p>
+<p>RUUT 를 구성하는 가장 기본 구성 단위이기 때문에 Segment 를 endpoint 로 하는 API 요청 응답은 Segment 기반으로 실시간/예측 교통 정보를 전달하고 해당 메시지 포맷은 아래 코드 블록과 같습니다.</p>
+<p><strong>Segment 메시지 응답</strong></p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span>{
+  &quot;segments&quot;: [{
+    &quot;segmentId&quot;: &quot;ID of the filtered segment&quot;,
+    &quot;roadCate&quot;: &quot;FRC number of the road on the segment&quot;,
+    &quot;speed&quot;: &quot;current speed of the segment&quot;,
+    &quot;limit&quot;: &quot;speed limit of the segment&quot;,
+    &quot;freeflow&quot;: &quot;free flow speed of the segment&quot;,
+    &quot;travelTime&quot;: &quot;estimated time to traverse the segment&quot;,
+    &quot;openLR&quot;: &quot;openLR code of the segment&quot;,
+    &quot;agoraC&quot;: &quot;AGORA-C code of the segment&quot;,
+    &quot;gps-coordinates&quot;: &quot;gps coordinates of the start/end node of the segment&quot;,
+
+    // only for predict response
+    &quot;confidenceLevel&quot;: &quot;Level of confidence of the traffic prediction&quot;,
+
+    // only if when the data is exist
+    &quot;lane&quot;: [{
+      &quot;laneNumber&quot;: &quot;Lane number&quot;,
+      &quot;laneSpeed&quot;: &quot;dedicated speed of the lane on the segment&quot;
+    }],
+    &quot;timeStamp&quot;: &quot;timestamp of the information&quot;
+  }]
+}
+</pre></div>
+</div>
+</div>
+<div class="section" id="incident">
+<h2>Incident<a class="headerlink" href="#incident" title="Permalink to this headline">¶</a></h2>
+<p>Incident 는 도로 위 이벤트 정보 즉, 사고, 재해, 공사, 행사 등의 정보를 다룹니다. 나머지 내용은 :ref:<a href="#id2"><span class="problematic" id="id3">`</span></a>Segment 포맷 &lt;segment_formats&gt;`과 동일 합니다.</p>
+<p><strong>Incident 메시지 응답</strong></p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;incidents&quot;</span><span class="p">:</span> <span class="p">[{</span>
+    <span class="nt">&quot;segmentId&quot;</span><span class="p">:</span> <span class="s2">&quot;ID of the segment where the events are occurred&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;incidentId&quot;</span><span class="p">:</span> <span class="s2">&quot;ID of the incident&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;incidentType&quot;</span><span class="p">:</span> <span class="s2">&quot;type of the incident&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;severity&quot;</span><span class="p">:</span> <span class="s2">&quot;severity of the incident&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;impacting&quot;</span><span class="p">:</span> <span class="s2">&quot;whether the incident has an impact to traffic flow&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;incident status&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;lane&quot;</span><span class="p">:</span> <span class="s2">&quot;lane number of the event&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;length&quot;</span><span class="p">:</span> <span class="s2">&quot;length of the incident has occurred&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;vehicleKind&quot;</span><span class="p">:</span> <span class="s2">&quot;이게 뭘까요?&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;detail explanation of the incident&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;schedule&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;isPlanned&quot;</span><span class="p">:</span> <span class="s2">&quot;whether the event is planned of not&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;startTime&quot;</span><span class="p">:</span> <span class="s2">&quot;start time of the event (only if scheduled)&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;endTime&quot;</span><span class="p">:</span> <span class="s2">&quot;end time of the event (only if scheduled)&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;reoccuring&quot;</span><span class="p">:{</span>
+        <span class="nt">&quot;daysOfWeek&quot;</span><span class="p">:</span> <span class="s2">&quot;days when the event is re-occurred&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;from&quot;</span><span class="p">:</span> <span class="s2">&quot;start time of the upcoming event&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;until&quot;</span><span class="p">:</span> <span class="s2">&quot;end time of the upcomfing event&quot;</span>
+      <span class="p">}</span>
+     <span class="p">},</span>
+    <span class="nt">&quot;openLR&quot;</span><span class="p">:</span> <span class="s2">&quot;openLR code of the segment&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;agoraC&quot;</span><span class="p">:</span> <span class="s2">&quot;AGORA-C code of the segment&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;timeStamp&quot;</span><span class="p">:</span> <span class="s2">&quot;timestamp of the information&quot;</span>
+  <span class="p">}]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="tpeg">
+<h2>TPEG<a class="headerlink" href="#tpeg" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="api.html" class="btn btn-neutral float-right" title="API 규격" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="tpeg.html" class="btn btn-neutral float-left" title="RUUT TPEG 서비스 가이드" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright SK TELECOM.LTD. ALL RIGHTS RESERVED.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

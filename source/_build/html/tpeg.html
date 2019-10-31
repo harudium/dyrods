@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Architecture &mdash; Smart[Fleet] Platform 1.1.0 documentation</title>
+  <title>RUUT TPEG 서비스 가이드 &mdash; Smart[Fleet] Platform 1.1.0 documentation</title>
   
 
   
@@ -36,8 +36,8 @@
   <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="주요 기능" href="functions.html" />
-    <link rel="prev" title="RUUT 기술 문서" href="index.html" /> 
+    <link rel="next" title="메시지 포맷" href="format.html" />
+    <link rel="prev" title="RUUT 서비스 가이드" href="skt.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -86,23 +86,19 @@
             
             
               <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Architecture</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#overall">Overall</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#miroserivce-architecture">Miroserivce Architecture</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#architecture-internals">Architecture Internals</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#data-source-interworking">Data Source Interworking</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#openlr-encoder-decoder">OpenLR Encoder/Decoder</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#data-manager">Data Manager</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#batch-modules">Batch Modules</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#session-manager">Session Manager</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#api-gateway">API Gateway</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">Architecture</a></li>
 <li class="toctree-l1"><a class="reference internal" href="functions.html">주요 기능</a></li>
 <li class="toctree-l1"><a class="reference internal" href="skt.html">RUUT 서비스 가이드</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tpeg.html">RUUT TPEG 서비스 가이드</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">RUUT TPEG 서비스 가이드</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">인증</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tpeg">TPEG 응답 교통 정보 요청</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#tfp">TFP (교통 정보)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tec">TEC (사고/이벤트 정보)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#wea">WEA (날씨 정보)</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="format.html">메시지 포맷</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API 규격</a></li>
 </ul>
@@ -150,13 +146,13 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>Architecture</li>
+      <li>RUUT TPEG 서비스 가이드</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="_sources/architecture.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/tpeg.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -169,34 +165,22 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="architecture">
-<h1>Architecture<a class="headerlink" href="#architecture" title="Permalink to this headline">¶</a></h1>
-<p>RUUT 의 시스템 구조</p>
-<div class="section" id="overall">
-<h2>Overall<a class="headerlink" href="#overall" title="Permalink to this headline">¶</a></h2>
+  <div class="section" id="ruut-tpeg">
+<h1>RUUT TPEG 서비스 가이드<a class="headerlink" href="#ruut-tpeg" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2>인증<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference internal" href="skt.html#general-authentication"><span class="std std-ref">RUUT 인증 프로세스</span></a> 참조</p>
 </div>
-<div class="section" id="miroserivce-architecture">
-<h2>Miroserivce Architecture<a class="headerlink" href="#miroserivce-architecture" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="tpeg">
+<h2>TPEG 응답 교통 정보 요청<a class="headerlink" href="#tpeg" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="tfp">
+<h3>TFP (교통 정보)<a class="headerlink" href="#tfp" title="Permalink to this headline">¶</a></h3>
 </div>
-<div class="section" id="architecture-internals">
-<h2>Architecture Internals<a class="headerlink" href="#architecture-internals" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="data-source-interworking">
-<h3>Data Source Interworking<a class="headerlink" href="#data-source-interworking" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="tec">
+<h3>TEC (사고/이벤트 정보)<a class="headerlink" href="#tec" title="Permalink to this headline">¶</a></h3>
 </div>
-<div class="section" id="openlr-encoder-decoder">
-<h3>OpenLR Encoder/Decoder<a class="headerlink" href="#openlr-encoder-decoder" title="Permalink to this headline">¶</a></h3>
-</div>
-<div class="section" id="data-manager">
-<h3>Data Manager<a class="headerlink" href="#data-manager" title="Permalink to this headline">¶</a></h3>
-</div>
-<div class="section" id="batch-modules">
-<h3>Batch Modules<a class="headerlink" href="#batch-modules" title="Permalink to this headline">¶</a></h3>
-</div>
-<div class="section" id="session-manager">
-<h3>Session Manager<a class="headerlink" href="#session-manager" title="Permalink to this headline">¶</a></h3>
-</div>
-<div class="section" id="api-gateway">
-<h3>API Gateway<a class="headerlink" href="#api-gateway" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="wea">
+<h3>WEA (날씨 정보)<a class="headerlink" href="#wea" title="Permalink to this headline">¶</a></h3>
 </div>
 </div>
 </div>
@@ -209,10 +193,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="functions.html" class="btn btn-neutral float-right" title="주요 기능" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="format.html" class="btn btn-neutral float-right" title="메시지 포맷" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="index.html" class="btn btn-neutral float-left" title="RUUT 기술 문서" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="skt.html" class="btn btn-neutral float-left" title="RUUT 서비스 가이드" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

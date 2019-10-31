@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>6. API 규격 &mdash; Smart[Fleet] Platform 1.1.0 documentation</title>
+  <title>API 규격 &mdash; Smart[Fleet] Platform 1.1.0 documentation</title>
   
 
   
@@ -17,35 +17,36 @@
   
 
   
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="7. 메시지 포맷" href="message.html" />
-    <link rel="prev" title="5. Device 연동 절차" href="device.html" /> 
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
-
+    <link rel="prev" title="메시지 포맷" href="format.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -84,22 +85,37 @@
             
             
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="introduction.html">1. Smart[Fleet] 플랫폼 소개</a></li>
-<li class="toctree-l1"><a class="reference internal" href="architecture.html">2. 주요 구성요소 (Entity Architecture)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="procedure.html">3. 서비스 세부 절차</a></li>
-<li class="toctree-l1"><a class="reference internal" href="entity.html">4. 구성요소(Entity) 등록</a></li>
-<li class="toctree-l1"><a class="reference internal" href="device.html">5. Device 연동 절차</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">6. API 규격</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#rest-api">6.1. REST API</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#entity-model">6.2. Entity Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">주요 기능</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skt.html">RUUT 서비스 가이드</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tpeg.html">RUUT TPEG 서비스 가이드</a></li>
+<li class="toctree-l1"><a class="reference internal" href="format.html">메시지 포맷</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">API 규격</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#geo-filtering">Geo Filtering</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Geo Filtering 파라미터 리스트</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">Geo Filtering 예제</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="message.html">7. 메시지 포맷</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dataanalytics.html">8. Data Analytics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sdk.html">9. SDK</a></li>
-<li class="toctree-l1"><a class="reference internal" href="simulator.html">10. 테스트용 시뮬레이터</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bestpractice.html">11. Best Practices</a></li>
-<li class="toctree-l1"><a class="reference internal" href="miscellaneous.html">12. Miscellaneous</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ruut">RUUT</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#segment">Segment</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#request-parameters">Request Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#response-parameters">Response Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#request-response-example">Request/Response Example</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#incident">Incident</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ruut-tpeg">RUUT TPEG</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#tpeg2">TPEG2</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#auxiliary">Auxiliary</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#history">History</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 
             
@@ -145,7 +161,7 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>6. API 규격</li>
+      <li>API 규격</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -165,169 +181,521 @@
            <div itemprop="articleBody">
             
   <div class="section" id="api">
-<span id="api-specification"></span><h1>6. API 규격<a class="headerlink" href="#api" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="rest-api">
-<h2>6.1. REST API<a class="headerlink" href="#rest-api" title="Permalink to this headline">¶</a></h2>
-<p class="text-align-justify">Smart[Fleet] 플랫폼의 다음과 같은 REST API를 제공합니다. 상세한 내용은 <a class="reference external" href="https://app.swaggerhub.com/apis/tremoteye/tremoteyeapi/1.0.0">Smart[Fleet] REST API Web Document</a> 내용을 참고하시기 바랍니다.</p>
-<table border="1" class="table-width-fix text-align-justify docutils">
+<h1>API 규격<a class="headerlink" href="#api" title="Permalink to this headline">¶</a></h1>
+<p class="table-width-fix" id="message-formats"><strong>Endpoint</strong></p>
+<ul class="simple">
+<li><p>RUUT 교통 정보 : <cite>/ruut/version/segments</cite></p></li>
+<li><p>RUUT 이벤트 정보 : <cite>/ruut/version/incidents</cite></p></li>
+<li><p>RUUT TPEG : <cite>/ruut/version/tpeg</cite></p></li>
+</ul>
+<div class="section" id="geo-filtering">
+<h2>Geo Filtering<a class="headerlink" href="#geo-filtering" title="Permalink to this headline">¶</a></h2>
+<p>지도 상의 영역을 지정하고 해당 영역 내에 포함되는 데이터만 추출하는 데 사용합니다. 인증, V2X를 제외한 모든 RUUT 플랫폼 기능의 필수 파라미터 입니다. Geo Filtering 은 총 5개 종류가 제공되며 각각의 필터 타입을 규정하기 위한 파라미터를 병용 하여야 합니다.</p>
+<div class="section" id="id1">
+<h3>Geo Filtering 파라미터 리스트<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>5개의 필터는 <cite>filter-type</cite> 파라미터의 값 영역에 명시하여 활성화 할 수 있습니다. 각각의 필터는 동시 사용이 불가합니다. 또한, 해당 필터와 병용 되어야 하는 파라미터가 추가로 명시되지 않을 경우 필터가 정상 동작하지 않습니다.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>예) <cite>/endpoint?filter-type=box&amp;corner1={gps}&amp;corner2={gps}</cite> <a href="#id2"><span class="problematic" id="id3">*</span></a><cite>box</cite> should be combined with <cite>corner1</cite> and <cite>corner2</cite></p>
+</div>
+<table class="docutils align-default">
 <colgroup>
-<col width="16%" />
-<col width="84%" />
+<col style="width: 14%" />
+<col style="width: 9%" />
+<col style="width: 18%" />
+<col style="width: 59%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">구분</th>
-<th class="head">APIs</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Params</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Value</p></th>
+<th class="head"><p>Description</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-even"><td>Auth</td>
-<td><ul class="first last simple">
-<li>로그인</li>
-<li>토큰 갱신</li>
-<li>비밀번호 변경</li>
-<li>임시비밀번호 변경</li>
-<li>사용자 이메일 검색</li>
-</ul>
-</td>
+<tbody>
+<tr class="row-even"><td rowspan="5"><p>filter-type</p></td>
+<td rowspan="5"><p>String</p></td>
+<td><p>box</p></td>
+<td><p>box shaped filter with 2 gps coordinates</p></td>
 </tr>
-<tr class="row-odd"><td>Company</td>
-<td><ul class="first last simple">
-<li>회사 정보 등록</li>
-<li>회사 정보 조회</li>
-<li>회사 정보 수정</li>
-<li>회사 삭제</li>
-<li>내 회사 정보 조회</li>
-<li>특정 Service Type에 속하는 회사 리스트 조회</li>
-<li>전체 회사 리스트 조회</li>
-<li>특정 Service Type에 속하는 협력사의 수 조회</li>
-<li>회사 관리자 등록</li>
-<li>회사 관리자 수정</li>
-<li>회사 관리자 삭제</li>
-<li>회사 관리자 리스트 조회</li>
-<li>소유한 차량 리스트 조회</li>
-<li>위임받은 차량 리스트 조회</li>
-<li>위임한 차량 리스트 조회</li>
-</ul>
-</td>
+<tr class="row-odd"><td><p>circle</p></td>
+<td><p>circle shaped filter with a centerpoint and a radius</p></td>
 </tr>
-<tr class="row-even"><td>Director</td>
-<td><ul class="first last simple">
-<li>Director 등록</li>
-<li>Director 정보 조회</li>
-<li>Director 삭제</li>
-<li>특정 회사에 속하는 Director 리스트 조회</li>
-<li>특정 회사에 속하는 Director 수 조회</li>
-<li>관리하는 차량 리스트 조회</li>
-<li>운행한 Trip 리스트 조회</li>
-<li>최신 Trip 조회</li>
-</ul>
-</td>
+<tr class="row-even"><td><p>polygon</p></td>
+<td><p>polygon shaped filter with 3+ gps coordinates</p></td>
 </tr>
-<tr class="row-odd"><td>Driver</td>
-<td><ul class="first last simple">
-<li>Driver 등록</li>
-<li>Driver 정보 조회</li>
-<li>Driver 정보 수정</li>
-<li>Driver 삭제</li>
-<li>Driver 리스트 조회</li>
-<li>Driver 수 조회</li>
-<li>운행한 Trip 리스트 조회</li>
-<li>최신 Trip 조회</li>
-</ul>
-</td>
+<tr class="row-odd"><td><p>pos</p></td>
+<td><p>get the closest data from the position</p></td>
 </tr>
-<tr class="row-even"><td>Vehicle</td>
-<td><ul class="first last simple">
-<li>차량 등록</li>
-<li>차량 번호로 차량 조회</li>
-<li>차량 정보 조회</li>
-<li>차량 정보 수정</li>
-<li>차량 삭제</li>
-<li>ServiceType에 속하는 전체 차량 수 조회</li>
-<li>소유 차량 수 조회</li>
-<li>소유 차량중에 센서가 부착되지 않은 차량 수 조회</li>
-<li>현재 운행중인 차량 수 조회</li>
-<li>Director 설정</li>
-<li>Director 해제</li>
-<li>운행한 Trip 리스트 조회</li>
-<li>최신 Trip 조회</li>
-<li>최신 MicroTrip 조회</li>
-<li>차량 활성화/비활성화</li>
-<li>Driver 설정</li>
-<li>Driver 해제</li>
-<li>차량을 위임한 회사 리스트 조회</li>
-</ul>
-</td>
+<tr class="row-even"><td><p>centerpoint-box</p></td>
+<td><p>box shaped filter with 1 center, width, height</p></td>
 </tr>
-<tr class="row-odd"><td>Sensor</td>
-<td><ul class="first last simple">
-<li>센서 등록</li>
-<li>Serial No로 센서 조회</li>
-<li>센서 정보 조회</li>
-<li>센서 정보 수정</li>
-<li>센서 삭제</li>
-<li>센서 최신 값 조회</li>
-<li>차량에 센서 장착</li>
-<li>차량에서 센서 분리</li>
-<li>센서 리스트 조회</li>
-<li>차량에 장착되지 않은 센서 리스트 조회</li>
-<li>ServiceType의 전체 센서 수</li>
-<li>소유한 전체 센서 수</li>
-<li>소유한 센서 중 차량에 장착되지 않은 센서 수</li>
-<li>RPC 전송</li>
-<li>RPC 결과 조회</li>
-<li>RPC 결과 리스트 조회</li>
-<li>최신 RPC 결과 조회</li>
-</ul>
-</td>
+<tr class="row-odd"><td><p>corner1</p></td>
+<td><p>String</p></td>
+<td><p>gps</p></td>
+<td><p>diagonal point 1 of the ‘box’ filter</p></td>
 </tr>
-<tr class="row-even"><td>Trip</td>
-<td><ul class="first last simple">
-<li>MicroTrip 리스트 조회</li>
-</ul>
-</td>
+<tr class="row-even"><td><p>corner2</p></td>
+<td><p>String</p></td>
+<td><p>gps</p></td>
+<td><p>diagonal point 2 of the ‘box’ filter</p></td>
 </tr>
-<tr class="row-odd"><td>Relation</td>
-<td><ul class="first last simple">
-<li>위임후보 회사 등록</li>
-<li>위임후보 회사 제외</li>
-<li>위임후보 회사 리스트 조회</li>
-<li>위임후보 회사에 차량 위임</li>
-<li>위임한 회사에서 차량 위임 해제</li>
-<li>Director에게 이용 가능한 차량 등록</li>
-<li>위임한 Director 정보 조회</li>
-<li>위임한 Director에서 차량 위임 해제</li>
-<li>Director에게 위임된 차량 리스트 조회</li>
-<li>Driver에게 이용가능한 차량 등록</li>
-<li>위임한 Driver 정보 조회</li>
-<li>위임한 Driver 차량 위임 해제</li>
-<li>Driver에게 위임된 차량 리스트 조회</li>
-</ul>
-</td>
+<tr class="row-odd"><td><p>center</p></td>
+<td><p>String</p></td>
+<td><p>gps</p></td>
+<td><p>centerpoint of the <cite>circle</cite> or <cite>centerpoint-box</cite> filter</p></td>
+</tr>
+<tr class="row-even"><td><p>radius</p></td>
+<td><p>Integer</p></td>
+<td><p>radius</p></td>
+<td><p>radius(km) of the <cite>circle</cite> filter</p></td>
+</tr>
+<tr class="row-odd"><td><p>height</p></td>
+<td><p>Integer</p></td>
+<td><p>box height</p></td>
+<td><p>height (km) of the <cite>centerpoint-box</cite> filter</p></td>
+</tr>
+<tr class="row-even"><td><p>width</p></td>
+<td><p>Integer</p></td>
+<td><p>box width</p></td>
+<td><p>width (km) of the <cite>centerpoint-box</cite> filter</p></td>
+</tr>
+<tr class="row-odd"><td><p>points</p></td>
+<td><p>String</p></td>
+<td><p>gps</p></td>
+<td><p>A pipe-delimeted list of gps coordinates of\
+<cite>polygon</cite> filter. Max 8 coordinates are allowed</p></td>
+</tr>
+<tr class="row-even"><td><p>point</p></td>
+<td><p>String</p></td>
+<td><p>gps</p></td>
+<td><p>gps point to get the closest one by the <cite>pos</cite> filter</p></td>
+</tr>
+<tr class="row-odd"><td><p>regionid</p></td>
+<td><p>Integer</p></td>
+<td><p>region ID</p></td>
+<td><p>region ID to filter by administrative area</p></td>
 </tr>
 </tbody>
 </table>
 </div>
-<div class="section" id="entity-model">
-<h2>6.2. Entity Model<a class="headerlink" href="#entity-model" title="Permalink to this headline">¶</a></h2>
-<p class="text-align-justify">REST API에서는 다음과 같은 Entity들이 정의되어 있으며, 세부 데이터 모델 내용은 <a class="reference external" href="https://app.swaggerhub.com/apis/tremoteye/tremoteyeapi/1.0.0">Smart[Fleet] REST API Web Document</a> 내용을 참고하시기 바랍니다.</p>
+<div class="section" id="id4">
+<h3>Geo Filtering 예제<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 9%" />
+<col style="width: 73%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Filter</p></th>
+<th class="head"><p>Method</p></th>
+<th class="head"><p>URL Sample</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>box</p></td>
+<td><p><strong>GET</strong></p></td>
+<td><p><cite>/endpoint?filter-type=box&amp;corner1={gps}&amp;corner2={gps}</cite></p></td>
+</tr>
+<tr class="row-odd"><td><p>circle</p></td>
+<td><p><strong>GET</strong></p></td>
+<td><p><cite>/endpoint?filter-type=circle&amp;center={gps}&amp;radius={km}</cite></p></td>
+</tr>
+<tr class="row-even"><td><p>polygon</p></td>
+<td><p><strong>GET</strong></p></td>
+<td><p><cite>/endpoint?filter-type=polygon&amp;points={gps}|{gps}|{gps}|…</cite></p></td>
+</tr>
+<tr class="row-odd"><td><p>pos</p></td>
+<td><p><strong>GET</strong></p></td>
+<td><p><cite>/endpoint?filter-type=pos&amp;point={gps}</cite></p></td>
+</tr>
+<tr class="row-even"><td><p>centerpoint-box</p></td>
+<td><p><strong>GET</strong></p></td>
+<td><p><cite>/endpoint?filter-type=centerpoint-box&amp;center={gps}&amp;height={km}</cite>\
+<cite>&amp;length={km}</cite></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="ruut">
+<h2>RUUT<a class="headerlink" href="#ruut" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="segment">
+<h3>Segment<a class="headerlink" href="#segment" title="Permalink to this headline">¶</a></h3>
+<p><strong>Request</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 12%" />
+<col style="width: 88%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>GET</strong></p></td>
+<td><p><cite>/ruut/{version}/segments?{geo-query}?{set of parameters}</cite></p></td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="request-parameters">
+<h4>Request Parameters<a class="headerlink" href="#request-parameters" title="Permalink to this headline">¶</a></h4>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 12%" />
+<col style="width: 9%" />
+<col style="width: 16%" />
+<col style="width: 63%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Params</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Value</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>rttiField</p></td>
+<td><p>String</p></td>
+<td><p>speed</p></td>
+<td><p>현재 측정 속도 반환</p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p></p></td>
+<td><p>limit</p></td>
+<td><p>세그먼트 제한 속도 반환</p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p></p></td>
+<td><p>travletime</p></td>
+<td><p>세그먼트 횡단 평균 시간 반환</p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p></p></td>
+<td><p>freeflow</p></td>
+<td><p>정체 없을 시 속도 반환</p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p></p></td>
+<td><p>all(default)</p></td>
+<td><p>모든 필드 반환</p></td>
+</tr>
+<tr class="row-odd"><td><p>frc</p></td>
+<td><p>Integer</p></td>
+<td><p>frc</p></td>
+<td><p>FRC 등급이 같은 항목만 반환 (쉼표 나누어 여러 개의 등급 명시 가능)</p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p></p></td>
+<td><p>all(default)</p></td>
+<td><p>모든 FRC 등급 데이터 반환</p></td>
+</tr>
+<tr class="row-odd"><td><p>start-time</p></td>
+<td><p>Datetime</p></td>
+<td><p>yyyymmddhhss</p></td>
+<td><p>해당 시점 데이터 반환하며 시점에 따라 3가지 패턴으로 구분</p>
 <ul class="simple">
-<li>JWT</li>
-<li>Company</li>
-<li>User</li>
-<li>Vehicle</li>
-<li>Sensor</li>
-<li>Trip</li>
-<li>MicroTrip</li>
-<li>CompanyToCompany</li>
-<li>CompanyToVehicle</li>
-<li>UserToVehicle</li>
-<li>RPCRequest</li>
-<li>RPCResponse</li>
-<li>RPCResult</li>
-<li>TextPageLink</li>
-<li>TimePageLink</li>
+<li><p>현재</p></li>
+<li><p>과거</p></li>
+<li><p>미래</p></li>
 </ul>
+</td>
+</tr>
+<tr class="row-even"><td><p>duration</p></td>
+<td><p>Integer</p></td>
+<td><p>5 - 60</p></td>
+<td><p>start-time 부터 duration 까지의 데이터 반환. 예측 데이터의
+경우 현재 시간 대비 1시간 까지만 반환 가능</p></td>
+</tr>
+<tr class="row-odd"><td><p>interval</p></td>
+<td><p>Integer</p></td>
+<td><p>분</p></td>
+<td><p>과거/미래 데이터 요청 시 매 <cite>interval</cite> 마다 데이터 추출</p></td>
+</tr>
+<tr class="row-even"><td><p>lane</p></td>
+<td><p>String</p></td>
+<td><p>on (default)</p></td>
+<td><p>차선 단위 교통 정보 활성화</p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p></p></td>
+<td><p>off</p></td>
+<td><p>차선 단위 교통 정보 비활성화</p></td>
+</tr>
+<tr class="row-even"><td><p>lr</p></td>
+<td><p>String</p></td>
+<td><p>openlr</p></td>
+<td><p>위치 참조 정보로 openLR 인코딩 정보 반환</p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p></p></td>
+<td><p>agorac</p></td>
+<td><p>위치 참조 정보로 AGORA-C 인코딩 정보 반환</p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p></p></td>
+<td><p>all (default)</p></td>
+<td><p>위치 참조 정보로 openLR / AGORA-C 인코딩 정보 반환</p></td>
+</tr>
+<tr class="row-odd"><td><p>coordinates</p></td>
+<td><p>String</p></td>
+<td><p>on (default)</p></td>
+<td><p>제공 세그먼트의 시작/끝 노드의 GPS 좌표 정보 반환</p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p></p></td>
+<td><p>off</p></td>
+<td><p>세그먼트 GPS 정보 반환 않음</p></td>
+</tr>
+</tbody>
+</table>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 9%" />
+<col style="width: 18%" />
+<col style="width: 59%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Params</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Value</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td rowspan="5"><p>rttiField</p></td>
+<td rowspan="5"><p>String</p></td>
+<td><p>speed</p></td>
+<td><p>Current measured speed field only</p></td>
+</tr>
+<tr class="row-odd"><td><p>limit</p></td>
+<td><p>Speed limit field only</p></td>
+</tr>
+<tr class="row-even"><td><p>travleTime</p></td>
+<td><p>Travel time (pass through the segment) field only</p></td>
+</tr>
+<tr class="row-odd"><td><p>freeFlow</p></td>
+<td><p>Reference free flow field only</p></td>
+</tr>
+<tr class="row-even"><td><p>all (default)</p></td>
+<td><p>Return all rtti fields</p></td>
+</tr>
+<tr class="row-odd"><td rowspan="2"><p>frc</p></td>
+<td rowspan="2"><p>Integer</p></td>
+<td><p>{FRC level}</p></td>
+<td><p>FRC matched fields only (comma delimited list of frc)</p></td>
+</tr>
+<tr class="row-even"><td><p>all (default)</p></td>
+<td><p>Return all fields regardless of FRC level</p></td>
+</tr>
+<tr class="row-odd"><td><p>start-time</p></td>
+<td><p>Datetime</p></td>
+<td><p>time</p></td>
+<td><p>Return data from this time. Three types of responses
+<a href="#id5"><span class="problematic" id="id6">*</span></a>Future : predicted data with <cite>duration</cite>, <cite>interval</cite>
+<a href="#id7"><span class="problematic" id="id8">*</span></a>Past : historical data with <cite>duration</cite>, <cite>interval</cite>
+<a href="#id9"><span class="problematic" id="id10">*</span></a>default : present</p></td>
+</tr>
+<tr class="row-even"><td><p>duration</p></td>
+<td><p>Integer</p></td>
+<td><p>5 to 60
+(multiple of 5)</p></td>
+<td><p>The duration to return data with the <cite>interval</cite>
+The start-time plus the duration cannot excced 1 hr
+from the current time (default: 0)</p></td>
+</tr>
+<tr class="row-odd"><td><p>interval</p></td>
+<td><p>Integer</p></td>
+<td><p>minutes</p></td>
+<td><p>The period to report data as a multiple of 5 (&lt;60)</p></td>
+</tr>
+<tr class="row-even"><td rowspan="2"><p>lane</p></td>
+<td rowspan="2"><p>String</p></td>
+<td><p>on (default)</p></td>
+<td><p>Enable lane level traffic (if possible)</p></td>
+</tr>
+<tr class="row-odd"><td><p>off</p></td>
+<td><p>Disable</p></td>
+</tr>
+<tr class="row-even"><td rowspan="3"><p>lr</p></td>
+<td rowspan="3"><p>Integer</p></td>
+<td><p>openlr</p></td>
+<td><p>openLR codes only</p></td>
+</tr>
+<tr class="row-odd"><td><p>agorac</p></td>
+<td><p>AGORA-C codes only</p></td>
+</tr>
+<tr class="row-even"><td><p>all (default)</p></td>
+<td><p>Return all lr fields.</p></td>
+</tr>
+<tr class="row-odd"><td rowspan="2"><p>coordinates</p></td>
+<td rowspan="2"><p>String</p></td>
+<td><p>on (default)</p></td>
+<td><p>Enable GPS pair of start/end node of the segment</p></td>
+</tr>
+<tr class="row-even"><td><p>off</p></td>
+<td><p>Disable</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="response-parameters">
+<h4>Response Parameters<a class="headerlink" href="#response-parameters" title="Permalink to this headline">¶</a></h4>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>응답은 하나 이상의 segment 로 구성 되며 JSON array 형태로 구성 됩니다.</p>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 10%" />
+<col style="width: 65%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Property</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>segmentId</p></td>
+<td><p>String</p></td>
+<td><p>ID of the segment</p></td>
+</tr>
+<tr class="row-odd"><td><p>roadCate</p></td>
+<td><p>String</p></td>
+<td><p>FRC level of the segement</p></td>
+</tr>
+<tr class="row-even"><td><p>speed</p></td>
+<td><p>Integer</p></td>
+<td><p>Current speed of the segment</p></td>
+</tr>
+<tr class="row-odd"><td><p>limit</p></td>
+<td><p>Integer</p></td>
+<td><p>Speed limit of the segment</p></td>
+</tr>
+<tr class="row-even"><td><p>freeflow</p></td>
+<td><p>Integer</p></td>
+<td><p>Reference free flow speed of the segment</p></td>
+</tr>
+<tr class="row-odd"><td><p>traveltime</p></td>
+<td><p>String</p></td>
+<td><p>Time(sec) to pass through the segment</p></td>
+</tr>
+<tr class="row-even"><td><p>openlr</p></td>
+<td><p>String</p></td>
+<td><p>openLR location referencing code (encoded)</p></td>
+</tr>
+<tr class="row-odd"><td><p>agorac</p></td>
+<td><p>String</p></td>
+<td><p>AGORA-C location referencing code (encoded)</p></td>
+</tr>
+<tr class="row-even"><td><p>confidence-level</p></td>
+<td><p>String</p></td>
+<td><p>Confidence level of prediction process (only forecast)</p></td>
+</tr>
+<tr class="row-odd"><td><p>lane</p></td>
+<td><p>Array</p></td>
+<td><p>Lane level traffic information object</p></td>
+</tr>
+<tr class="row-even"><td><p>– laneNumber</p></td>
+<td><p>String</p></td>
+<td><p>Number of lane (inner lane &lt; outerlane)</p></td>
+</tr>
+<tr class="row-odd"><td><p>– laneSpeed</p></td>
+<td><p>String</p></td>
+<td><p>Current speed of the specified lane of the segemnt</p></td>
+</tr>
+<tr class="row-even"><td><p>timestamp</p></td>
+<td><p>Datetime</p></td>
+<td><p>Timestamp when the traffic infromation was created</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="request-response-example">
+<h4>Request/Response Example<a class="headerlink" href="#request-response-example" title="Permalink to this headline">¶</a></h4>
+<p><strong>Request Example</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 12%" />
+<col style="width: 88%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>GET</strong></p></td>
+<td><p><cite>{host-ip}/ruut/v1/segments?filter_type=circle&amp;center=37.397619,%20127.112465</cite>
+<cite>&amp;radius=10&amp;frc=1&amp;rttiField=all&amp;regionId=0&amp;lr=all&amp;lane=on</cite></p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Response Example</strong></p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;segments&quot;</span><span class="p">:</span> <span class="p">[{</span>
+    <span class="nt">&quot;segmentId&quot;</span><span class="p">:</span> <span class="s2">&quot;1020174101&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;roadCate&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="nt">&quot;speed&quot;</span><span class="p">:</span> <span class="s2">&quot;84&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;limit&quot;</span><span class="p">:</span> <span class="s2">&quot;80&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;freeFlow&quot;</span><span class="p">:</span> <span class="s2">&quot;80&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;travelTime&quot;</span><span class="p">:</span> <span class="s2">&quot;58&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;openLR&quot;</span><span class="p">:</span> <span class="s2">&quot;C1pdVxqjGwktFgCN+34JEQ==&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;agoraC&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;lane&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;laneNumber&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;laneSpeed&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span>
+        <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="nt">&quot;timeStamp&quot;</span><span class="p">:</span> <span class="s2">&quot;2019-10-23 15:04:00&quot;</span>
+  <span class="p">}]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="incident">
+<h3>Incident<a class="headerlink" href="#incident" title="Permalink to this headline">¶</a></h3>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 86%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>col 1</p></th>
+<th class="head"><p>col 2</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>Second column of row 1.</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>Second column of row 2.
+Second line of paragraph.</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><ul class="simple">
+<li><p>Second column of row 3.</p></li>
+<li><p>Second item in bullet
+list (row 3, column 2).</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>Row 4; column 1 will be empty.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="ruut-tpeg">
+<h2>RUUT TPEG<a class="headerlink" href="#ruut-tpeg" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="tpeg2">
+<h3>TPEG2<a class="headerlink" href="#tpeg2" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="auxiliary">
+<h2>Auxiliary<a class="headerlink" href="#auxiliary" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="history">
+<h3>History<a class="headerlink" href="#history" title="Permalink to this headline">¶</a></h3>
+</div>
 </div>
 </div>
 
@@ -339,10 +707,8 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="message.html" class="btn btn-neutral float-right" title="7. 메시지 포맷" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
-      
-        <a href="device.html" class="btn btn-neutral" title="5. Device 연동 절차" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="format.html" class="btn btn-neutral float-left" title="메시지 포맷" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -351,7 +717,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright SK TELECOM.LTD. ALL RIGHTS RESERVED..
+        &copy; Copyright SK TELECOM.LTD. ALL RIGHTS RESERVED.
 
     </p>
   </div>
@@ -368,33 +734,16 @@
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'1.1.0',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-  
-
-  <script type="text/javascript" src="_static/js/theme.js"></script>
-
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

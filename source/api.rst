@@ -88,6 +88,45 @@ Segment
 Request Parameters
 ..........................
 
+=============  =========  =================  ========================================================
+Params           Type         Value              Description
+=============  =========  =================  ========================================================
+rttiField       String        speed          현재 측정 속도 반환
+-------------  ---------  -----------------  --------------------------------------------------------
+\                \           limit           세그먼트 제한 속도 반환 
+-------------  ---------  -----------------  --------------------------------------------------------
+\                \           travletime      세그먼트 횡단 평균 시간 반환
+-------------  ---------  -----------------  --------------------------------------------------------
+\                \           freeflow        정체 없을 시 속도 반환
+-------------  ---------  -----------------  --------------------------------------------------------
+\                \           all(default)    모든 필드 반환
+-------------  ---------  -----------------  --------------------------------------------------------
+frc             Integer     frc              FRC 등급이 같은 항목만 반환 (쉼표 나누어 여러 개의 등급 명시 가능)
+-------------  ---------  -----------------  --------------------------------------------------------
+\                \          all(default)     모든 FRC 등급 데이터 반환
+-------------  ---------  -----------------  --------------------------------------------------------
+start-time      Datetime    yyyymmddhhss     해당 시점 데이터 반환하며 시점에 따라 3가지 패턴으로 구분
+
+                                             - 현재
+                                             - 과거
+                                             - 미래
+-------------  ---------  -----------------  --------------------------------------------------------
+duration        Integer    5 - 60            start-time 부터 duration 까지의 데이터 반환. 예측 데이터의 
+                                             경우 현재 시간 대비 1시간 까지만 반환 가능 
+-------------  ---------  -----------------  --------------------------------------------------------
+interval        Integer    분                 과거/미래 데이터 요청 시 매 `interval` 마다 데이터 추출
+-------------  ---------  -----------------  --------------------------------------------------------
+lane            String     on (default)      차선 단위 교통 정보 활성화
+\                 \        off               차선 단위 교통 정보 비활성화
+-------------  ---------  -----------------  --------------------------------------------------------
+lr              String     openlr            위치 참조 정보로 openLR 인코딩 정보 반환
+\                 \        agorac            위치 참조 정보로 AGORA-C 인코딩 정보 반환
+\                 \        all (default)     위치 참조 정보로 openLR / AGORA-C 인코딩 정보 반환
+-------------  ---------  -----------------  --------------------------------------------------------
+coordinates     String     on (default)      제공 세그먼트의 시작/끝 노드의 GPS 좌표 정보 반환
+\                 \        off               세그먼트 GPS 정보 반환 않음
+=============  =========  =================  ========================================================
+
 +-------------+---------+-----------------+--------------------------------------------------------+
 | Params      | Type    | Value           | Description                                            |
 +=============+=========+=================+========================================================+
@@ -108,7 +147,7 @@ Request Parameters
 | start-time  | Datetime| time            | Return data from this time. Three types of responses   |
 |             |         |                 | *Future : predicted data with `duration`, `interval`   |
 |             |         |                 | *Past : historical data with `duration`, `interval`    |
-|             |         |                 | *default : presnet                                     |
+|             |         |                 | *default : present                                     |
 +-------------+---------+-----------------+--------------------------------------------------------+
 | duration    | Integer | 5 to 60         | The duration to return data with the `interval`        |
 |             |         | (multiple of 5) | The start-time plus the duration cannot excced 1 hr    |
@@ -168,35 +207,51 @@ Response Parameters
 
 Request/Response Example
 ..........................
-.. topic:: request example
+**Request Example**
 
-    {host-ip}/ruut/v1/segments?filter_type=circle&center=37.397619,%20127.112465&radius=10&frc=1&rttiField=all&regionId=0&lr=all&lane=on
++------------+-------------------------------------------------------------------------------------+
+| **GET**    | `{host-ip}/ruut/v1/segments?filter_type=circle&center=37.397619,%20127.112465`      |
+|            | `&radius=10&frc=1&rttiField=all&regionId=0&lr=all&lane=on`                          |
++------------+-------------------------------------------------------------------------------------+
 
-.. topic:: response example
+**Response Example**
 
-    "segments": [
-        {
-            "segmentId": "1020174101",
-            "roadCate": 1,
-            "speed": "84",
-            "limit": "80",
-            "freeFlow": "80",
-            "travelTime": "58",
-            "openLR": "C1pdVxqjGwktFgCN+34JEQ==",
-            "agoraC": "",
-            "lane": [
-                {
-                    "laneNumber": "",
-                    "laneSpeed": ""
-                }
-            ],
-            "timeStamp": "2019-10-23 15:04:00"
-        },
+.. code-block:: json
 
-**Response**
+    {
+      "segments": [{
+        "segmentId": "1020174101",
+        "roadCate": 1,
+        "speed": "84",
+        "limit": "80",
+        "freeFlow": "80",
+        "travelTime": "58",
+        "openLR": "C1pdVxqjGwktFgCN+34JEQ==",
+        "agoraC": "",
+        "lane": [
+            {
+                "laneNumber": "",
+                "laneSpeed": ""
+            }
+        ],
+        "timeStamp": "2019-10-23 15:04:00"
+      }]
+    }
 
 Incident
 ''''''''''''''''''''''''''
+=====  =====
+col 1  col 2
+=====  =====
+1      Second column of row 1.
+2      Second column of row 2.
+       Second line of paragraph.
+3      - Second column of row 3.
+
+       - Second item in bullet
+         list (row 3, column 2).
+\      Row 4; column 1 will be empty.
+=====  =====
 
 RUUT TPEG
 --------------------------
