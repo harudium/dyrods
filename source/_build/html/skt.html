@@ -89,22 +89,22 @@
 <li class="toctree-l1"><a class="reference internal" href="architecture.html">Architecture</a></li>
 <li class="toctree-l1"><a class="reference internal" href="functions.html">주요 기능</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">RUUT 서비스 가이드</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#id1">인증 (공통 프로세스)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#general-authentication">인증 (공통 프로세스)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id2">계정 생성</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id3">로그인 (인증 토큰 획득)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id4">토큰 갱신</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id5">패스워드 변경</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id6">패스워드 리셋</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">패스워드 리셋 (이메일 연동)</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#json">JSON 응답 교통 정보 요청</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id7">실시간 교통 정보</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id8">예측 교통 정보</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ruut-api">RUUT 고유 API 활용</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id9">실시간 교통 정보</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id10">예측 교통 정보</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id11">돌발 정보 (이벤트, 사고)</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#v2x">V2X 서비스 연동 요청</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id10">과거 교통 정보 요청</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id12">과거 교통 정보 요청</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="tpeg.html">RUUT TPEG 서비스 가이드</a></li>
@@ -176,19 +176,21 @@
             
   <div class="section" id="ruut">
 <h1>RUUT 서비스 가이드<a class="headerlink" href="#ruut" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="id1">
-<h2>인증 (공통 프로세스)<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>RUUT 의 모든 서비스는 REST API 호출 기반으로 이루어져 있습니다. 전체적인 서비스 사용 절차는 아래 그림과 같습니다.</p>
+<img alt="_images/usage.png" src="_images/usage.png" />
+<div class="section" id="general-authentication">
+<span id="id1"></span><h2>인증 (공통 프로세스)<a class="headerlink" href="#general-authentication" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="id2">
 <h3>계정 생성<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
-<p>API 호출을 통해 계정을 생성 합니다.</p>
+<p>API 호출을 통해 로그인을 수행하고 접근 권한을 담은 token 을 부여 받습니다.</p>
 <table class="table-width-fix text-align-justify docutils align-default">
 <colgroup>
-<col style="width: 25%" />
-<col style="width: 75%" />
+<col style="width: 26%" />
+<col style="width: 74%" />
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p><strong>POST</strong></p></td>
-<td><p><cite>/api/auth/join</cite>.</p></td>
+<td><p><cite>/api/auth/v1/join</cite></p></td>
 </tr>
 </tbody>
 </table>
@@ -222,9 +224,9 @@
 </ul>
 <table class="table-width-fix table-width-full text-align-justify docutils align-default">
 <colgroup>
-<col style="width: 23%" />
-<col style="width: 19%" />
-<col style="width: 58%" />
+<col style="width: 22%" />
+<col style="width: 18%" />
+<col style="width: 60%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Key</p></th>
@@ -234,12 +236,20 @@
 </thead>
 <tbody>
 <tr class="row-even"><td><p>username</p></td>
-<td><p>string</p></td>
-<td><p>로그인할 아이디(이메일)</p></td>
+<td><p>String</p></td>
+<td><p>사용자 ID</p></td>
 </tr>
 <tr class="row-odd"><td><p>password</p></td>
-<td><p>string</p></td>
+<td><p>String</p></td>
 <td><p>패스워드</p></td>
+</tr>
+<tr class="row-even"><td><p>email</p></td>
+<td><p>String</p></td>
+<td><p>사용자 이메일 주소</p></td>
+</tr>
+<tr class="row-odd"><td><p>phone</p></td>
+<td><p>String</p></td>
+<td><p>휴대폰 번호 (01x-xxxx-xxxx)</p></td>
 </tr>
 </tbody>
 </table>
@@ -258,6 +268,88 @@
 </pre></div>
 </div>
 <p><span class="underline">Response (code: 200)</span></p>
+<ul class="simple">
+<li><p>별도 응답 body 없음</p></li>
+</ul>
+</div>
+<div class="text-align-justify section" id="id3">
+<h3>로그인 (인증 토큰 획득)<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>API 호출을 통해 계정을 생성 합니다.</p>
+<table class="table-width-fix text-align-justify docutils align-default">
+<colgroup>
+<col style="width: 26%" />
+<col style="width: 74%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>POST</strong></p></td>
+<td><p><cite>/api/auth/v1/login</cite></p></td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><p>Header</p></li>
+</ul>
+<table class="table-width-fix table-width-full text-align-justify docutils align-default">
+<colgroup>
+<col style="width: 26%" />
+<col style="width: 15%" />
+<col style="width: 33%" />
+<col style="width: 26%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>option</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Content-Type</p></td>
+<td><p>string</p></td>
+<td><p>application/json</p></td>
+<td><p>content type</p></td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><p>Body</p></li>
+</ul>
+<table class="table-width-fix table-width-full text-align-justify docutils align-default">
+<colgroup>
+<col style="width: 24%" />
+<col style="width: 19%" />
+<col style="width: 57%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>username</p></td>
+<td><p>String</p></td>
+<td><p>사용자 ID</p></td>
+</tr>
+<tr class="row-odd"><td><p>password</p></td>
+<td><p>String</p></td>
+<td><p>패스워드</p></td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><p>Example Code</p></li>
+</ul>
+<p><span class="underline">Request</span></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>content-type:&quot;application/json&quot;
+
+{
+    &quot;username&quot;:&quot;example&quot;,
+    &quot;password&quot;:&quot;1234&quot;,
+}
+</pre></div>
+</div>
+<p><span class="underline">Response (code: 200)</span></p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
     <span class="nt">&quot;token&quot;</span><span class="p">:</span><span class="s2">&quot;eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzeXNhZG1pbkB0aG…&quot;</span><span class="p">,</span>
     <span class="nt">&quot;refreshToken&quot;</span><span class="p">:</span> <span class="s2">&quot;eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzeXNhZG1…&quot;</span>
@@ -265,36 +357,336 @@
 </pre></div>
 </div>
 </div>
-<div class="text-align-justify section" id="id3">
-<h3>로그인 (인증 토큰 획득)<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
-</div>
 <div class="section" id="id4">
 <h3>토큰 갱신<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>API 호출을 통해 만료된 인증 토큰을 갱신 합니다.</p>
+<table class="table-width-fix text-align-justify docutils align-default">
+<colgroup>
+<col style="width: 26%" />
+<col style="width: 74%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>POST</strong></p></td>
+<td><p><cite>/api/auth/v1/token</cite></p></td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><p>Header</p></li>
+</ul>
+<table class="table-width-fix table-width-full text-align-justify docutils align-default">
+<colgroup>
+<col style="width: 26%" />
+<col style="width: 15%" />
+<col style="width: 33%" />
+<col style="width: 26%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>option</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Content-Type</p></td>
+<td><p>string</p></td>
+<td><p>application/json</p></td>
+<td><p>content type</p></td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><p>Body</p></li>
+</ul>
+<table class="table-width-fix table-width-full text-align-justify docutils align-default">
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 18%" />
+<col style="width: 53%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>refreshToken</p></td>
+<td><p>String</p></td>
+<td><p>갱신 토큰 정보</p></td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><p>Example Code</p></li>
+</ul>
+<p><span class="underline">Request</span></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>content-type:&quot;application/json&quot;
+
+{
+    &quot;refreshToken&quot;: &quot;eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzeXNhZG1…&quot;
+}
+</pre></div>
+</div>
+<p><span class="underline">Response (code: 200)</span></p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;token&quot;</span><span class="p">:</span><span class="s2">&quot;eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzeXNhZG1pbkB0aG…&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;refreshToken&quot;</span><span class="p">:</span> <span class="s2">&quot;yJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJdWIiO…&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="id5">
 <h3>패스워드 변경<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<p>API 호출을 통해 패스워드를 변경 합니다.</p>
+<table class="table-width-fix text-align-justify docutils align-default">
+<colgroup>
+<col style="width: 26%" />
+<col style="width: 74%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>POST</strong></p></td>
+<td><p><cite>/api/auth/v1/changePassword</cite></p></td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><p>Header</p></li>
+</ul>
+<table class="table-width-fix table-width-full text-align-justify docutils align-default">
+<colgroup>
+<col style="width: 26%" />
+<col style="width: 15%" />
+<col style="width: 33%" />
+<col style="width: 26%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>option</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Content-Type</p></td>
+<td><p>string</p></td>
+<td><p>application/json</p></td>
+<td><p>content type</p></td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><p>Body</p></li>
+</ul>
+<table class="table-width-fix table-width-full text-align-justify docutils align-default">
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 18%" />
+<col style="width: 53%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>password</p></td>
+<td><p>String</p></td>
+<td><p>기존 패스워드</p></td>
+</tr>
+<tr class="row-odd"><td><p>newPasswrod</p></td>
+<td><p>String</p></td>
+<td><p>변경할 패스워드</p></td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><p>Example Code</p></li>
+</ul>
+<p><span class="underline">Request</span></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>content-type:&quot;application/json&quot;
+
+ {
+    &quot;passwrod&quot;:&quot;1234&quot;,
+    &quot;newPassword&quot;:&quot;5678&quot;,
+}
+</pre></div>
+</div>
+<p><span class="underline">Response (code: 200)</span></p>
+<ul class="simple">
+<li><p>별도 응답 body 없음</p></li>
+</ul>
 </div>
 <div class="section" id="id6">
-<h3>패스워드 리셋<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<h3>패스워드 리셋 (이메일 연동)<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<p>API 호출을 통해 패스워드를 변경 합니다.</p>
+<table class="table-width-fix text-align-justify docutils align-default">
+<colgroup>
+<col style="width: 26%" />
+<col style="width: 74%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>POST</strong></p></td>
+<td><p><cite>/api/auth/v1/resetPasswordByEmail</cite></p></td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><p>Header</p></li>
+</ul>
+<table class="table-width-fix table-width-full text-align-justify docutils align-default">
+<colgroup>
+<col style="width: 26%" />
+<col style="width: 15%" />
+<col style="width: 33%" />
+<col style="width: 26%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>option</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Content-Type</p></td>
+<td><p>string</p></td>
+<td><p>application/json</p></td>
+<td><p>content type</p></td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><p>Body</p></li>
+</ul>
+<table class="table-width-fix table-width-full text-align-justify docutils align-default">
+<colgroup>
+<col style="width: 27%" />
+<col style="width: 16%" />
+<col style="width: 57%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>email</p></td>
+<td><p>String</p></td>
+<td><p>회원 정보에 등록된 메일 주소</p></td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><p>Example Code</p></li>
+</ul>
+<p><span class="underline">Request</span></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>content-type:&quot;application/json&quot;
+
+{
+    &quot;email&quot;:&quot;example@mail.com&quot;
+}
+</pre></div>
+</div>
+<p><span class="underline">Response (code: 200)</span></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>{
+    &quot;password&quot;: &quot;WEx8Ekp1rT&quot;
+}
+</pre></div>
 </div>
 </div>
-<div class="section" id="json">
-<h2>JSON 응답 교통 정보 요청<a class="headerlink" href="#json" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="id7">
-<h3>실시간 교통 정보<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
 </div>
-<div class="section" id="id8">
-<h3>예측 교통 정보<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
-</div>
+<div class="section" id="ruut-api">
+<h2>RUUT 고유 API 활용<a class="headerlink" href="#ruut-api" title="Permalink to this headline">¶</a></h2>
+<p>RUUT 고유 API 는 JSON 형태로 실시간 교통 정보, 예측 교통 정보, 돌발(사고 및 이벤트) 정보, V2X 서비스 구독 등의 기능을 제공하고 있습니다. 앞서 인증 과정에서 발급받은 API 접근 키 API 헤더에 포함 시킨 후
+:ref:<a href="#id7"><span class="problematic" id="id8">`</span></a>API규격 &lt;apidoc&gt;`에 따라 원하는 정보를 요청 하시면 됩니다.</p>
+<ul class="simple">
+<li><p>Header</p></li>
+</ul>
+<table class="table-width-fix table-width-full text-align-justify docutils align-default">
+<colgroup>
+<col style="width: 34%" />
+<col style="width: 13%" />
+<col style="width: 30%" />
+<col style="width: 23%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>option</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Content-Type</p></td>
+<td><p>string</p></td>
+<td><p>application/json</p></td>
+<td><p>content type</p></td>
+</tr>
+<tr class="row-odd"><td><p>X-Authorization</p></td>
+<td><p>string</p></td>
+<td><p>{accessToken}</p></td>
+<td><p>API Key</p></td>
+</tr>
+</tbody>
+</table>
 <div class="section" id="id9">
 <h3>실시간 교통 정보<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<p>실시간 교통 정보를 획득 하려면 API URL 에 하기 항목을 명시하셔야 합니다.</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="api.html#geofilter"><span class="std std-ref">Geo filtering</span></a> 교통 정보 탐색하고자 하는 지리적 영역 규정 (<cite>filter_type</cite>)</p></li>
+<li><p>획득 하고자 하는 정보의 유형 및 카테고리 선택 (<cite>rttiField</cite>, <cite>lane</cite>)</p></li>
+<li><p>위치 참조 방식 선택 (<cite>lr</cite>)</p></li>
+</ul>
+<p><span class="underline">Request Example</span></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>// 원형 geo filter, 모든 교통 정보 표출, 위치 참조 모두 표출, 차선 단위 정보 배제
+ruut/v1/segments?filter_type=circle&amp;center=37.397619, 127.112465&amp;radius=10&amp;rttiField=all
+&amp;lr=all&amp;lane=off
+</pre></div>
+</div>
+</div>
+<div class="section" id="id10">
+<h3>예측 교통 정보<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<p>예측 교통 정보를 획득 하려면 API URL 에 하기 항목을 명시하셔야 합니다.</p>
+<p><span class="underline">예) 09:00 부터 1시간 동안의 예측 데이터를 20분 단위로 요청 (09:00, 09:20, 09:40 분 예측 데이터 반환)</span></p>
+<ul class="simple">
+<li><p>실시간 교통 정보 획득 정보 포함</p></li>
+<li><p>예측 시작 시점 (<cite>start_time</cite>: 20200101090000)</p></li>
+<li><p>얼마나 오래 데이터를 추출 해야 하는지 (<cite>duration</cite>: 60)</p></li>
+<li><p>몇 분 간격으로 데이터를 추출 해야 하는지 (<cite>interval</cite>: 20)</p></li>
+</ul>
+<p><span class="underline">Request Example</span></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ruut/v1/segments?filter_type=circle&amp;center=37.397619, 127.112465&amp;radius=10&amp;rttiField=all
+&amp;regionId=0&amp;lr=all&amp;start_time=20200101090000&amp;duration=60&amp;interval=20
+</pre></div>
+</div>
+</div>
+<div class="section" id="id11">
+<h3>돌발 정보 (이벤트, 사고)<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
+<p>돌발 정보를 획득 하려면 API URL 에 하기 항목을 명시하셔야 합니다.</p>
+<p><span class="underline">예) 모든 돌발 정보를 1번 도로 레벨에 한하여 모든 위치 참조 포맷으로 요청</span></p>
+<ul class="simple">
+<li><p><a class="reference internal" href="api.html#geofilter"><span class="std std-ref">Geo filtering</span></a> 돌발 정보 탐색하고자 하는 지리적 영역 규정 (<cite>filter_type</cite>)</p></li>
+<li><p>획득 하고자 하는 정보의 유형 및 카테고리 선택 (<cite>incidentField</cite>, <cite>type</cite>)</p></li>
+<li><p>위치 참조 방식 선택 (<cite>lr</cite>)</p></li>
+</ul>
+<p><span class="underline">Request Example</span></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ruut/v1/incidents?filter_type=circle&amp;center=37.397619, 127.112465&amp;radius=100&amp;frc=1
+&amp;incidentField=all&amp;type=all&amp;lr=all
+</pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="v2x">
 <h2>V2X 서비스 연동 요청<a class="headerlink" href="#v2x" title="Permalink to this headline">¶</a></h2>
+<p>작성 중</p>
 </div>
-<div class="section" id="id10">
-<h2>과거 교통 정보 요청<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id12">
+<h2>과거 교통 정보 요청<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h2>
+<p>작성 중</p>
 </div>
 </div>
 

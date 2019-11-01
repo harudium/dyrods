@@ -186,38 +186,39 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="functions.html">주요 기능</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="functions.html#rtti">실시간 교통 정보 (RTTI)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="functions.html#ruut">RUUT</a></li>
-<li class="toctree-l3"><a class="reference internal" href="functions.html#tpeg2">TPEG2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions.html#id2">교통 정보 제공</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="functions.html#geospatial-query">다양한 Geospatial Query</a></li>
+<li class="toctree-l3"><a class="reference internal" href="functions.html#ruut-api">RUUT API 제공</a></li>
+<li class="toctree-l3"><a class="reference internal" href="functions.html#tpeg2">TPEG2 메시지 제공</a></li>
+<li class="toctree-l3"><a class="reference internal" href="functions.html#fti">예측 교통 정보 (FTI)</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="functions.html#fti">예측 교통 정보 (FTI)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="functions.html#v2x">V2X 서비스</a></li>
 <li class="toctree-l2"><a class="reference internal" href="functions.html#map-agnostic-location-referencing">Map Agnostic Location Referencing</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="functions.html#openlr">openLR</a></li>
 <li class="toctree-l3"><a class="reference internal" href="functions.html#agora-c">AGORA-C</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="functions.html#id2">차선 단위 교통 정보 제공</a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions.html#id3">차선 단위 교통 정보 제공</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="skt.html">RUUT 서비스 가이드</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="skt.html#id1">인증 (공통 프로세스)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="skt.html#general-authentication">인증 (공통 프로세스)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="skt.html#id2">계정 생성</a></li>
 <li class="toctree-l3"><a class="reference internal" href="skt.html#id3">로그인 (인증 토큰 획득)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="skt.html#id4">토큰 갱신</a></li>
 <li class="toctree-l3"><a class="reference internal" href="skt.html#id5">패스워드 변경</a></li>
-<li class="toctree-l3"><a class="reference internal" href="skt.html#id6">패스워드 리셋</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skt.html#id6">패스워드 리셋 (이메일 연동)</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="skt.html#json">JSON 응답 교통 정보 요청</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="skt.html#id7">실시간 교통 정보</a></li>
-<li class="toctree-l3"><a class="reference internal" href="skt.html#id8">예측 교통 정보</a></li>
+<li class="toctree-l2"><a class="reference internal" href="skt.html#ruut-api">RUUT 고유 API 활용</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="skt.html#id9">실시간 교통 정보</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skt.html#id10">예측 교통 정보</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skt.html#id11">돌발 정보 (이벤트, 사고)</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="skt.html#v2x">V2X 서비스 연동 요청</a></li>
-<li class="toctree-l2"><a class="reference internal" href="skt.html#id10">과거 교통 정보 요청</a></li>
+<li class="toctree-l2"><a class="reference internal" href="skt.html#id12">과거 교통 정보 요청</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="tpeg.html">RUUT TPEG 서비스 가이드</a><ul>
@@ -239,7 +240,8 @@
 <li class="toctree-l1"><a class="reference internal" href="api.html">API 규격</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="api.html#geo-filtering">Geo Filtering</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="api.html#id1">Geo Filtering 파라미터 리스트</a></li>
-<li class="toctree-l3"><a class="reference internal" href="api.html#id4">Geo Filtering 예제</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#id5">Geo Filtering 제한 사항</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#id6">Geo Filtering 예제</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="api.html#ruut">RUUT</a><ul>
@@ -255,6 +257,7 @@
 <li class="toctree-l3"><a class="reference internal" href="api.html#history">History</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#errors">Errors</a></li>
 </ul>
 </li>
 </ul>

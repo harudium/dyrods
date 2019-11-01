@@ -88,19 +88,20 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="architecture.html">Architecture</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">주요 기능</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#rtti">실시간 교통 정보 (RTTI)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#ruut">RUUT</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#tpeg2">TPEG2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">교통 정보 제공</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#geospatial-query">다양한 Geospatial Query</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ruut-api">RUUT API 제공</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tpeg2">TPEG2 메시지 제공</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fti">예측 교통 정보 (FTI)</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#fti">예측 교통 정보 (FTI)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#v2x">V2X 서비스</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#map-agnostic-location-referencing">Map Agnostic Location Referencing</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#openlr">openLR</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#agora-c">AGORA-C</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#id2">차선 단위 교통 정보 제공</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">차선 단위 교통 정보 제공</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="skt.html">RUUT 서비스 가이드</a></li>
@@ -174,21 +175,29 @@
   <div class="section" id="id1">
 <h1>주요 기능<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 <p>RUUT 는 SKT의 모빌리티 연관 서비스들의 데이터를 수집하여 아래와 같은 기능을 제공 합니다</p>
-<div class="section" id="rtti">
-<h2>실시간 교통 정보 (RTTI)<a class="headerlink" href="#rtti" title="Permalink to this headline">¶</a></h2>
-<p>RUUT 는 SKT T Map 과 연동하여 1800만 운전자의 실시간 운전정보 데이터를 제공 합니다. 실시간 교통 정보 데이터는 RUUT 전용 포맷 (JSON) 및 TPEG2 (Base64 Encoded XML, TPEG ML) 형태로 제공 되며 고객 리소스 최적화를 위하여 다양한 옵션 파라미터 조합을 제공합니다.</p>
-<div class="section" id="ruut">
-<h3>RUUT<a class="headerlink" href="#ruut" title="Permalink to this headline">¶</a></h3>
-<p>RUUT 실시간 교통 정보는 JSON 포맷 형태로 제공 됩니다. 상세 포맷은 <a class="reference internal" href="format.html#message-formats"><span class="std std-ref">RUUT포맷</span></a> 을 참조 하세요. 사용자는 표준화된 RESTful API 호출을 통하여 RUUT 실시간 교통 정보를 획득할 수 있습니다.</p>
+<img alt="_images/ruut_concepts.png" src="_images/ruut_concepts.png" />
+<div class="section" id="id2">
+<h2>교통 정보 제공<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>SKT T Map 과 연동하여 1800만 운전자의 실시간 운전정보 데이터를 제공 합니다. 실시간 교통 정보 데이터는 RUUT 전용 포맷 (JSON) 및 TPEG2 (Base64 Encoded XML, TPEG ML) 형태로 제공 되며 고객 리소스 최적화를 위하여 다양한 옵션 파라미터 조합을 제공합니다.</p>
+<div class="section" id="geospatial-query">
+<h3>다양한 Geospatial Query<a class="headerlink" href="#geospatial-query" title="Permalink to this headline">¶</a></h3>
+<p>교통 정보 검색을 위하여 지리적 위치 범위에 대한 필터링을 제공합니다. 사용자는 필요한 지리적 영역의 형태 및 크기를 직접 입력하여 데이터 크기를 최적화하여 검색할 수 있습니다. 실제 자동차 네비게이션 산업에서 활용되고 있는 지리적 영역 필터링 형태 외에도 사용자 취향에 따른 필터 옵션을 제공하고 있습니다.</p>
+<img alt="_images/geoquery.png" src="_images/geoquery.png" />
+</div>
+<div class="section" id="ruut-api">
+<h3>RUUT API 제공<a class="headerlink" href="#ruut-api" title="Permalink to this headline">¶</a></h3>
+<p>RUUT 실시간 교통 정보는 JSON 포맷 형태로 제공 됩니다. 상세 포맷은 <a class="reference internal" href="api.html#apidoc"><span class="std std-ref">RUUT포맷</span></a> 을 참조 하세요. 사용자는 표준화된 RESTful API 호출을 통하여 RUUT 실시간 교통 정보를 획득할 수 있습니다.</p>
 </div>
 <div class="section" id="tpeg2">
-<h3>TPEG2<a class="headerlink" href="#tpeg2" title="Permalink to this headline">¶</a></h3>
+<h3>TPEG2 메시지 제공<a class="headerlink" href="#tpeg2" title="Permalink to this headline">¶</a></h3>
 <p>최신의 교통 정보 전달 표준인 TPEG2 메시지를 제공합니다. TPEG2 에 대해서는 ISO 표준 사이트를 참조 하세요. RUUT 는 TPEG2 어플리케이션 중 TFP (실시간 교통 정보), TEC (실시간 사고 및 이벤트 정보), WEA (실시간 날씨 정보) 를 제공합니다.</p>
-</div>
+<img alt="_images/tpeg.png" src="_images/tpeg.png" />
 </div>
 <div class="section" id="fti">
-<h2>예측 교통 정보 (FTI)<a class="headerlink" href="#fti" title="Permalink to this headline">¶</a></h2>
+<h3>예측 교통 정보 (FTI)<a class="headerlink" href="#fti" title="Permalink to this headline">¶</a></h3>
 <p>RUUT 는 다양한 교통 데이터를 통합 분석한 결과를 토대로 현재 시점부터 1시간 내의 교통 예측 정보를 제공합니다. 교통 예측 정보는 실시간 교통 정보 형태로 제공되며 정보의 제공 시간이 현재가 아닌 미래 시간으로 작성 됩니다.</p>
+<img alt="_images/ruut_prediction.png" src="_images/ruut_prediction.png" />
+</div>
 </div>
 <div class="section" id="v2x">
 <h2>V2X 서비스<a class="headerlink" href="#v2x" title="Permalink to this headline">¶</a></h2>
@@ -197,6 +206,7 @@
 <div class="section" id="map-agnostic-location-referencing">
 <h2>Map Agnostic Location Referencing<a class="headerlink" href="#map-agnostic-location-referencing" title="Permalink to this headline">¶</a></h2>
 <p>교통 정보 서비스를 제공 하기 위해서는 도로의 어느 영역 데이터 인지를 확인할 수 있어야 합니다.</p>
+<img alt="_images/lr.png" src="_images/lr.png" />
 <div class="section" id="openlr">
 <h3>openLR<a class="headerlink" href="#openlr" title="Permalink to this headline">¶</a></h3>
 </div>
@@ -205,9 +215,10 @@
 <p>AGORA-C 는 ISO 국제 표준 위치 참조 규격 규격 입니다.</p>
 </div>
 </div>
-<div class="section" id="id2">
-<h2>차선 단위 교통 정보 제공<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id3">
+<h2>차선 단위 교통 정보 제공<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <p>RUUT 는 도로 특정 영역에 대하여 차선 단위 교통 정보를 제공합니다.</p>
+<img alt="_images/lane.png" src="_images/lane.png" />
 </div>
 </div>
 
